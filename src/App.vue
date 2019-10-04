@@ -32,13 +32,17 @@
       :turns="turns"
       >
     </Actions>
-
+    
+    <Backpack
+      :potionCount="potionCount"
+      :manaPotion="manaPotion">
+    </Backpack>
   </div>
 </template>
 
 <script>
   import Actions from './components/Actions'
-  //import Backpack from './components/Backpack'
+  import Backpack from './components/Backpack'
   import ClassStats from './components/ClassStats'
   import Store from './components/Store.vue'
 
@@ -60,7 +64,7 @@
     },
     components: {
       Actions,
-      //Backpack,
+      Backpack,
       ClassStats,
       Store,
     },
