@@ -51,9 +51,6 @@
             <div class="flex flex-wrap justify-center mt-12 items-center">
                 <template v-if="!started">
                     <button class="p-4 m-2 bg-red-600 text-white rounded" @click="startGame()">Start New Game</button>
-                    <button class="p-4 m-2 bg-blue-600 text-white rounded" @click="buyPotion()">Buy Health Potion ( {{ potionCount }} )</button>
-                    <button class="p-4 m-2 bg-green-600 text-white rounded" @click="buyManaPotion()">Buy Mana Potion ( {{ manaPotion
-                    }} )</button>
                 </template>
                 <template v-else>
                     <div class="flex flex-wrap w-full justify-center content-start">

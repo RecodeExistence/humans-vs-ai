@@ -1,17 +1,6 @@
 new Vue({
   el: "#app",
-  data: {
-    playerHealth: 100,
-    aiHealth: 100,
-    playerMana: 100,
-    started: false,
-    currentTurn: 0,
-    gold: 300,
-    potionCount: 0,
-    manaPotion: 0,
-    totalDamage: 0,
-    turns: []
-  },
+
   methods: {
     startGame: function () {
       this.playerHealth = 100;
