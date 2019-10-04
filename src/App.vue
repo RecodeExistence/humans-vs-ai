@@ -32,11 +32,12 @@
       :turns="turns"
       >
     </Actions>
-    
+
     <Backpack
       :potionCount="potionCount"
       :manaPotion="manaPotion">
     </Backpack>
+
   </div>
 </template>
 
@@ -61,6 +62,9 @@
         totalDamage: 0,
         turns: []
       };
+    },
+    methods : {
+
     },
     components: {
       Actions,

@@ -5,7 +5,7 @@
     </template>
     <template v-else>
         <div class="flex flex-wrap w-full justify-center content-start">
-            <!-- Spells Abilities here-->
+
             <div class="m-4 sm:w-full md:w-1/3 border-yellow-400 p-3 border-solid border-2">
                 <p class="text-2xl text-center text-yellow-400 mb-3">Spells / Abilities : </p>
                 <div class="flex flex-wrap justify-center">
@@ -15,6 +15,7 @@
                     <button class="p-4 m-2 w-40 rounded text-black bg-gray-500" @click="giveUp()">Run Away</button>
                 </div>
             </div>
+
         </div>
     </template>
 </div>
@@ -152,6 +153,13 @@
                 } else {
                     this.started = true;
                 }
+            },
+            rewardGold: function () {
+                this.gold += this.totalDamage;
+            },
+            deathPenality: function () {
+                let percent = 0.25 * this.gold;
+                this.gold -= Math.floor(percent);
             },
             checkWin: function () {
                 if (this.aiHealth <= 0) {
