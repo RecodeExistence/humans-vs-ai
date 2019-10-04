@@ -15,7 +15,7 @@
                     <button class="p-4 m-2 w-40 rounded text-black bg-gray-500" @click="giveUp()">Run Away</button>
                 </div>
             </div>
-            <!-- Backpack here-->
+            <!-- Backpack here -- refactor this into its own prop -->
             <div class="m-4 sm:w-full md:w-1/3 border-yellow-400 p-3 border-solid border-2" v-if="showBackPack()">
                 <p class="text-2xl text-center text-yellow-400 mb-3">Backpack :</p>
                 <div class="flex flex-wrap justify-center">
@@ -31,13 +31,15 @@
 <script>
     export default {
         props:[
+            'started',
+            'currentTurn',
+            'playerHealth',
+            'aiHealth',
+            'playerMana',
             'potionCount',
             'manaPotion',
-            'started',
-            'aiHealth',
-            'playerHealth',
-            'playerMana',
-            'currentTurn',
+            'totalDamage',
+            'turns'
         ],
         methods:{
             startGame: function () {

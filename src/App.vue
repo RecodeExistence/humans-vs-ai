@@ -8,31 +8,39 @@
       :playerMana="playerMana">
     </ClassStats>
 
-    <template v-show="!started">
+    <div class="flex flex-wrap justify-center">
+      <p class="text-yellow-400 mx-2 text-2xl text-center mt-12"> Gold :  {{ this.gold }}</p>
+      <p class="text-red-400 mx-2 text-2xl text-center mt-12"> Damage :  {{ this.totalDamage }}</p>
+    </div>
+
+    <div @gameWasStarted="started = $event" v-show="!started" >
       <Store 
         :manaPotion="manaPotion"
         :potionCount="potionCount"
         :gold="gold">
       </Store>
-    </template>
+    </div>
 
-    <Buttons
+    <Actions
       :started="started"
+      :currentTurn="currentTurn"
+      :playerHealth="playerHealth"
+      :aiHealth="aiHealth"
+      :playerMana="playerMana"
       :potionCount="potionCount"
       :manaPotion="manaPotion"
-      :aiHealth="aiHealth"
-      :playerHealth="playerHealth"
-      :playerMana="playerMana"
+      :turns="turns"
       >
-    </Buttons>
+    </Actions>
 
   </div>
 </template>
 
 <script>
-  import Store from './components/Store.vue'
+  import Actions from './components/Actions'
+  //import Backpack from './components/Backpack'
   import ClassStats from './components/ClassStats'
-  import Buttons from './components/Buttons'
+  import Store from './components/Store.vue'
 
   export default {
     name: 'app',
@@ -51,20 +59,10 @@
       };
     },
     components: {
-      Store,
+      Actions,
+      //Backpack,
       ClassStats,
-      Buttons
+      Store,
     },
-    methods: {
-      startGame: function () {
-        this.playerHealth = 100;
-        this.aiHealth = 100;
-        this.playerMana = 100;
-        this.started = true;
-        this.turns = [];
-        this.currentTurn = 0;
-        this.totalDamage = 0;
-      },
-    }
   }
 </script>
