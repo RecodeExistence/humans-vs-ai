@@ -14,7 +14,9 @@ export default new Vuex.Store({
     potionCount: 0,
     manaPotion: 0,
     totalDamage: 0,
-    turns: []
+    turns: [],
+    potionCost: 50,
+    currency: 'gold',
   },
   mutations: {
 
