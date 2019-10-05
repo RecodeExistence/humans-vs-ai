@@ -38,6 +38,10 @@
       :manaPotion="manaPotion">
     </Backpack>
 
+    <Log></Log>
+
+    <Footer></Footer>
+
   </div>
 </template>
 
@@ -45,6 +49,8 @@
   import Actions from './components/Actions'
   import Backpack from './components/Backpack'
   import ClassStats from './components/ClassStats'
+  import Footer from './components/Footer'
+  import Log from './components/Log'
   import Store from './components/Store.vue'
 
   export default {
@@ -70,6 +76,8 @@
       Actions,
       Backpack,
       ClassStats,
+      Footer,
+      Log,
       Store,
     },
   }
