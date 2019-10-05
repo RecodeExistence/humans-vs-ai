@@ -1,9 +1,5 @@
 .DS_Store
 node_modules
-<<<<<<< HEAD
-/dist
-=======
->>>>>>> staging
 
 # local env files
 .env.local
@@ -21,8 +17,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-<<<<<<< HEAD
 *.sw?
-=======
-*.sw?
->>>>>>> staging

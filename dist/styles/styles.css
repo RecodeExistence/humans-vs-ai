@@ -1,0 +1,14 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body{
+    color: #97C475;
+    background-color: #282C34;
+    margin: 30px;
+}
+h1,h2,h3,h4,h5,h6 {
+    color: #E26B73;
+}
