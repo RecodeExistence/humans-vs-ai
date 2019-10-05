@@ -154,7 +154,7 @@
                 this.$store.state.gold += this.$store.state.totalDamage * 2.5;
             },
             deathPenality() {
-                let percent = 0.25 * this.gold;
+                let percent = 0.25 * this.$store.state.gold;
                 this.$store.state.gold -= Math.floor(percent);
             },
             checkWin() {
