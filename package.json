@@ -1,21 +1,13 @@
 {
-<<<<<<< HEAD
-  "name": "src",
-=======
   "name": "humans-vs-ai",
->>>>>>> staging
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-<<<<<<< HEAD
-    "lint": "vue-cli-service lint"
-=======
     "lint": "vue-cli-service lint",
     "dev": "nodemon server",
     "start": "node server"
->>>>>>> staging
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -27,31 +19,19 @@
     "mongoose": "^5.7.3",
     "request": "^2.88.0",
     "tailwindcss": "^1.1.2",
-<<<<<<< HEAD
-    "vue": "^2.6.10"
-=======
     "vue": "^2.6.10",
     "vuex": "^3.0.1"
->>>>>>> staging
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
-<<<<<<< HEAD
-=======
     "@vue/cli-plugin-vuex": "^4.0.0-alpha.4",
->>>>>>> staging
     "@vue/cli-service": "^3.11.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-<<<<<<< HEAD
-    "vue-template-compiler": "^2.6.10",
-    "nodemon": "^1.19.3"
-=======
     "nodemon": "^1.19.3",
     "vue-template-compiler": "^2.6.10"
->>>>>>> staging
   },
   "eslintConfig": {
     "root": true,
