@@ -27,7 +27,9 @@
         return this.$store.state.manaPotion;
       },
       potionCost(){
-        return this.$store.state.potionCost + ' ' + this.$store.state.currency;
+        return this.$store.state.potionCost 
+          + ' ' + 
+          this.$store.state.currency;
       },
       currency() {
         return this.$store.state.currency;
