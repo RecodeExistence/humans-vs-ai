@@ -16,7 +16,7 @@ export default new Vuex.Store({
     totalDamage: 0,
     turns: [],
     potionCost: 50,
-    currency: 'Dollars',
+    currency: 'dollars',
   },
   mutations: {
 
