@@ -1,18 +1,26 @@
 <template>
-    <div class="m-4 sm:w-full md:w-1/3 border-yellow-400 p-3 border-solid border-2" v-if="showBackPack()">
+
+    <div class="m-2 max-w-lg w-full border-yellow-400 p-4 border-solid border-2" v-if="showBackPack()">
         <p class="text-2xl text-center text-yellow-400 mb-3">Backpack :</p>
         <div class="flex flex-wrap justify-center">
 
-            <button class="p-4 m-2 w-40 rounded text-white bg-green-500" v-if="potionCount > 0" @click="usePotion()">
-                Health Potion <br>( {{ potionCount }} )
+            <button class="p-4 m-2 w-40 rounded text-white bg-green-500"  
+                v-if="potionCount > 0" 
+                @click="usePotion()">
+                Medkit
+                ( {{ potionCount }} )
             </button>
 
-            <button class="p-4 m-2 w-40 rounded text-white bg-blue-500" v-if="manaPotion > 0" @click="useManaPotion()"> 
-                Mana Potion <br>( {{ manaPotion }} )
+            <button class="p-4 m-2 w-40 rounded text-white bg-blue-500" 
+                v-if="manaPotion > 0" 
+                @click="useManaPotion()"> 
+                Energy Drink
+                ( {{ manaPotion }} )
             </button>
             
         </div>
     </div>
+
 </template>
     
 <script>

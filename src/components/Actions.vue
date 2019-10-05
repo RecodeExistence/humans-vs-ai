@@ -1,24 +1,38 @@
 <template>
-<div class="flex flex-wrap justify-center mt-12 items-center">
-    <template v-if="!started">
-        <button class="p-4 m-2 bg-red-600 text-white rounded" @click="startGame()">Start Battle</button>
-    </template>
-    <template v-else>
-        <div class="flex flex-wrap w-full justify-center content-start">
 
-            <div class="m-4 sm:w-full md:w-1/3 border-yellow-400 p-3 border-solid border-2">
-                <p class="text-2xl text-center text-yellow-400 mb-3">Spells / Abilities : </p>
-                <div class="flex flex-wrap justify-center">
-                    <button class="p-4 m-2 w-40 rounded text-white bg-red-500" @click="attack()">Attack</button>
-                    <button class="p-4 m-2 w-40 rounded text-white bg-orange-500" @click="specialAttack()">Special Attack</button>
-                    <button class="p-4 m-2 w-40 rounded text-white bg-blue-500" @click="heal()">Heal</button>
-                    <button class="p-4 m-2 w-40 rounded text-black bg-gray-500" @click="giveUp()">Run Away</button>
-                </div>
-            </div>
+    <div v-if="!started">
+        <button class="p-4 m-2 bg-red-600 text-white rounded" @click="startGame()">Start Battle</button>
+    </div>
+
+    <div v-else class="m-2 p-4 w-full max-w-lg justify-center border-yellow-400 border-solid border-2">
+        <p class="text-2xl text-center text-yellow-400 mb-3">
+            Abilities : 
+        </p>
+
+        <div class="flex flex-wrap justify-center">
+            <button class="p-4 m-2 w-40 rounded text-white bg-red-500" 
+                @click="attack()">
+                Attack
+            </button>
+
+            <button class="p-4 m-2 w-40 rounded text-white bg-orange-500" 
+                @click="specialAttack()">
+                Special Attack
+            </button>
+
+            <button class="p-4 m-2 w-40 rounded text-white bg-blue-500"        
+                @click="heal()">
+                Heal
+            </button>
+
+            <button class="p-4 m-2 w-40 rounded text-black bg-gray-500" 
+                @click="giveUp()">
+                Run Away
+            </button>
 
         </div>
-    </template>
-</div>
+    </div>
+
 </template>
 
 <script>

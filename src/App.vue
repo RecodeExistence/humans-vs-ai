@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="h-full">
+  <div id="app" class="h-full content-center">
     <p class="text-4xl text-center">Humans vs AI</p>
 
     <ClassStats></ClassStats>
@@ -10,9 +10,10 @@
       <Store></Store>
     </div>
 
-    <Actions></Actions>
-
-    <Backpack></Backpack>
+    <div class="flex flex-wrap justify-center mt-12">
+      <Actions></Actions>
+      <Backpack></Backpack>
+    </div>
 
     <Log></Log>
 
