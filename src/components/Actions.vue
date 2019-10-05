@@ -150,14 +150,14 @@
                     this.$store.state.started = true;
                 }
             },
-            rewardGold: function () {
+            rewardGold() {
                 this.$store.state.gold += this.$store.state.totalDamage * 2.5;
             },
-            deathPenality: function () {
+            deathPenality() {
                 let percent = 0.25 * this.gold;
                 this.$store.state.gold -= Math.floor(percent);
             },
-            checkWin: function () {
+            checkWin() {
                 if (this.$store.state.aiHealth <= 0) {
                     if (confirm("You Won! New Game?")) {
                         this.rewardGold();

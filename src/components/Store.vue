@@ -27,7 +27,7 @@
           this.$store.state.gold -= 50;
         }
       },
-      buyManaPotion: function () {
+      buyManaPotion() {
         if (this.$store.state.gold <= 49) {
           return;
         } else {

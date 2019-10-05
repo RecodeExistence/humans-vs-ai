@@ -11,26 +11,26 @@
 <script>
     export default {
         computed:{
-            potionCount(){
+            potionCount() {
                 return this.$store.state.potionCount;
             },
-            manaPotion(){
+            manaPotion() {
                 return this.$store.state.manaPotion;
             }
         },
         methods: {
-            showBackPack: function() {
+            showBackPack() {
                 if(this.$store.state.potionCount || this.$store.state.manaPotion > 0) {
                     if(this.$store.state.started){
                         return true;
                     }
                 }
             },
-            usePotion: function () {
+            usePotion() {
                 if (this.$store.state.potionCount > 0) {
                     if (this.$store.state.playerHealth <= 90) {
-                        this.$store.state.potionCount = this.$store.state.potionCount - 1;
-                        this.$store.state.playerHealth = this.$store.state.playerHealth + 10;
+                        this.$store.state.potionCount -= 1;
+                        this.$store.state.playerHealth += 10;
                         this.aiAttacks();
                         this.$store.state.turns.unshift({
                             isPlayer: true,
@@ -43,7 +43,7 @@
                     alert("You don't have any potions");
                 }
             },
-            useManaPotion: function () {
+            useManaPotion() {
                 if (this.$store.state.manaPotion > 0) {
                     if (this.$store.state.playerMana <= 90) {
                     this.$store.state.manaPotion -= 1;
