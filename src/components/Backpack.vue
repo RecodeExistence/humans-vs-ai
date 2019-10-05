@@ -18,7 +18,11 @@
                 ( {{ manaPotion }} )
             </button>
             
+            
         </div>
+        <p class="text-center mt-12 text-yellow-400">
+            {{ currency }} : {{ gold }}
+        </p>
     </div>
 
 </template>
@@ -31,6 +35,12 @@
             },
             manaPotion() {
                 return this.$store.state.manaPotion;
+            },
+            gold(){
+                return this.$store.state.gold;
+            },
+            currency(){
+                return this.$store.state.currency;
             }
         },
         methods: {
