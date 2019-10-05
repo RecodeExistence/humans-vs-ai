@@ -11,6 +11,10 @@
 
 <script>
     export default {
-        
+        computed:{
+            turns() {
+                return this.$store.state.turns;
+            }
+        }
     }
 </script>

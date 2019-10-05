@@ -27,10 +27,16 @@
 
 <script>
     export default {
-        props: [
-            'playerHealth',
-            'aiHealth',
-            'playerMana'
-        ]
+        computed: {
+            playerHealth() {
+                return this.$store.state.playerHealth;
+            },
+            aiHealth(){
+                return this.$store.state.aiHealth;
+            },
+            playerMana(){
+                return this.$store.state.playerMana;
+            }
+        }
     }
 </script>

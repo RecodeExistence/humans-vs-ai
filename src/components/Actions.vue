@@ -23,66 +23,67 @@
 
 <script>
     export default {
-        props:[
-            'started',
-            'currentTurn',
-            'playerHealth',
-            'aiHealth',
-            'playerMana',
-            'totalDamage',
-            'turns'
-        ],
+        computed:{
+            started() { return this.$store.state.started; },
+            currentTurn() { return this.$store.state.currentTurn; },
+            playerHealth() { return this.$store.state.playerHealth; },
+            aiHealth() { return this.$store.state.aiHealth },
+            playerMana() { return this.$store.state.playerMana; },
+            potionCount() { return this.$store.state.potionCount; },
+            manaPotion() { return this.$store.state.manaPotion; },
+            turns() { return this.$store.state.turns; },
+        },
         methods:{
-            startGame: function () {
-                this.playerHealth = 100;
-                this.aiHealth = 100;
-                this.playerMana = 100;
-                this.started = true;
-                this.turns = [];
-                this.currentTurn = 0;
-                this.totalDamage = 0;
+            startGame() {
+                this.$store.state.playerHealth = 100;
+                this.$store.state.aiHealth = 100;
+                this.$store.state.playerMana = 100;
+                this.$store.state.started = true;
+                this.$store.state.turns = [];
+                this.$store.state.currentTurn = 0;
+                this.$store.state.totalDamage = 0;
             },
-            doDamage: function (min, max) {
+            doDamage(min, max) {
                 return Math.max(Math.floor(Math.random() * max), min);
             },
-            aiAttacks: function () {
+            aiAttacks() {
                 var damage = this.doDamage(0, 7);
-                this.playerHealth -= damage;
+                this.$store.state.playerHealth -= damage;
                 if (damage > 0) {
-                    this.turns.unshift({
+                    this.$store.state.turns.unshift({
                     isPlayer: false,
                     text:
                         "Turn " +
-                        this.currentTurn +
+                        this.$store.state.currentTurn +
                         ": AI " +
                         this.attackName() +
                         " you for " +
                         damage
                     });
                 } else {
-                    this.turns.unshift({
-                    isPlayer: false,
-                    text: "Turn " + this.currentTurn + ": AI missed!"
+                    this.$store.state.turns.unshift({
+                        isPlayer: false,
+                        text: "Turn " + this.$store.state.currentTurn + ": AI missed!"
                     });
                 }
                 this.checkWin();
             },
-            attack: function () {
-                this.currentTurn += 1;
-                this.usedSpecial = false;
-                this.usedHeal = false;
+            attack() {
+                this.$store.state.currentTurn += 1;
+                this.$store.state.usedSpecial = false;
+                this.$store.state.usedHeal = false;
                 var damage = this.doDamage(0, 5);
-                this.aiHealth -= damage;
-                this.totalDamage += damage;
+                this.$store.state.aiHealth -= damage;
+                this.$store.state.totalDamage += damage;
                 if (damage > 0) {
-                    this.turns.unshift({
+                    this.$store.state.turns.unshift({
                     isPlayer: true,
-                    text: "Turn " + this.currentTurn + ": You hit the AI for " + damage
+                    text: "Turn " + this.$store.state.currentTurn + ": You hit the AI for " + damage
                     });
                 } else {
-                    this.turns.unshift({
+                    this.$store.state.turns.unshift({
                     isPlayer: true,
-                    text: "Turn " + this.currentTurn + ": You missed!"
+                    text: "Turn " + this.$store.state.currentTurn + ": You missed!"
                     });
                 }
                 if (this.checkWin()) {
@@ -90,95 +91,90 @@
                 }
                     this.aiAttacks();
             },
-            attackName: function () {
+            attackName() {
                 const attackNames = ["scratches", "bites", "claws"];
                 const randomNum = Math.floor(Math.random() * attackNames.length);
                 return attackNames[randomNum];
             },
-            specialAttack: function () {
-                if (this.playerMana >= 20) {
-                    this.currentTurn += 1;
-                    this.playerMana = this.playerMana - 20;
+            specialAttack() {
+                if (this.$store.state.playerMana >= 20) {
+                    this.$store.state.currentTurn += 1;
+                    this.$store.state.playerMana -= 20;
                     var damage = this.doDamage(5, 10);
-                    this.aiHealth -= damage;
-                    this.totalDamage += damage;
-                    this.turns.unshift({
-                    isPlayer: true,
-                    text:
-                        "Turn " + this.currentTurn +
-                        ": You hit the AI with your special attack for " + damage
+                    this.$store.state.aiHealth -= damage;
+                    this.$store.state.totalDamage += damage;
+                    this.$store.state.turns.unshift({
+                        isPlayer: true,
+                        text: "Turn " + this.$store.state.currentTurn +
+                            ": You hit the AI with your special attack for " + damage
                     });
                     this.aiAttacks();
                 } else {
                     this.turns.unshift({
-                    isPlayer: true,
-                    text: "You don't have enough mana for that attack."
+                        isPlayer: true,
+                        text: "You don't have enough mana for that attack."
                     });
                 }
                 if (this.checkWin()) {
                     return;
                 }
             },
-            heal: function () {
-                if (this.playerMana >= 10) {
-                    this.currentTurn += 1;
-                    this.playerMana = this.playerMana - 10;
+            heal() {
+                if (this.$store.state.playerMana >= 10) {
+                    this.$store.state.currentTurn += 1;
+                    this.$store.state.playerMana -= 10;
                     var heals = this.doDamage(4, 10);
-                    if (this.playerHealth <= 90) {
-                    this.playerHealth += heals;
+                    if (this.$store.state.playerHealth <= 90) {
+                        this.$store.state.playerHealth += heals;
                     } else {
-                    this.playerHealth = 100;
+                        this.$store.state.playerHealth = 100;
                     }
-                    this.turns.unshift({
-                    isPlayer: true,
-                    text:
-                        "Turn " +
-                        this.currentTurn +
-                        ": You heal for " +
-                        heals + "."
+                    this.$store.state.turns.unshift({
+                        isPlayer: true,
+                        text: "Turn " + this.$store.state.currentTurn + ": You heal for "   + heals + "."
                     });
                     this.aiAttacks();
                 } else {
-                    this.turns.unshift({
-                    isPlayer: true,
-                    text: "You dont have enough mana to heal!"
+                    this.$store.state.turns.unshift({
+                        isPlayer: true,
+                        text: "You dont have enough mana to heal!"
                     });
                 }
             },
-            giveUp: function () {
+            giveUp() {
                 if (confirm("You Give UP. New Game?")) {
-                    this.started = false;
+                    this.$store.state.started = false;
                     this.deathPenality();
-                    this.totalDamage = 0;
+                    this.$store.state.totalDamage = 0;
                 } else {
-                    this.started = true;
+                    this.$store.state.started = true;
                 }
             },
             rewardGold: function () {
-                this.gold += this.totalDamage;
+                this.$store.state.gold += this.$store.state.totalDamage * 2.5;
             },
             deathPenality: function () {
                 let percent = 0.25 * this.gold;
-                this.gold -= Math.floor(percent);
+                this.$store.state.gold -= Math.floor(percent);
             },
             checkWin: function () {
-                if (this.aiHealth <= 0) {
+                if (this.$store.state.aiHealth <= 0) {
                     if (confirm("You Won! New Game?")) {
-                    this.rewardGold();
-                    this.startGame();
+                        this.rewardGold();
+                        this.startGame();
                     } else {
-                    this.rewardGold();
-                    this.started = false;
+                        this.rewardGold();
+                        this.$store.state.started = false;
                     }
                     return true;
-                } else if (this.playerHealth <= 0) {
+                } else if (this.$store.state.playerHealth <= 0) {
                     this.deathPenality();
                     if (confirm("You lost. New Game?")) {
-                    this.rewardGold();
-                    this.startGame();
+                        this.rewardGold();
+                        this.startGame();
                     } else {
-                    this.rewardGold();
-                    this.started = false;
+                        this.rewardGold();
+                        this.$store.state.started = false;
                     }
                     return true;
                 }
