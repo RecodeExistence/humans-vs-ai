@@ -1,5 +1,6 @@
 module.exports = {
   theme: {
+<<<<<<< HEAD
     maxHeight: {
       '0': '0',
       '1/4': '25%',
@@ -7,6 +8,8 @@ module.exports = {
       '3/4': '75%',
       'full': '100%',
     },
+=======
+>>>>>>> staging
     extend: {
       width: {
         '72': '18rem',
