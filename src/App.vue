@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="h-full content-center">
-    <p class="text-4xl text-center">Humans vs AI</p>
+    <img class="m-auto block border-gray-500 border-4 rounded-full" src="/assets/huvai_800.png" alt="Humans vs AI">
 
     <ClassStats></ClassStats>
 
