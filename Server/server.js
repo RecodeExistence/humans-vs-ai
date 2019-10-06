@@ -9,6 +9,7 @@ connectDB();
 app.use(express.json({ extended: false }));
 //define routes
 app.use("/users", require("./routes/users"));
+app.use("/auth", require("./routes/auth"));
 
 app.get("/", (req, res) => res.send("API Running"));
 
