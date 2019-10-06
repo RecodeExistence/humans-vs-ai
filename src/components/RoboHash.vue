@@ -1,7 +1,16 @@
 <template>
-  <div>
-    <h1>{{this.roboIndex}}</h1>
-    <img :src="randomRobo()" />
+  <div v-if="started">
+
+    <img class="m-auto h-48 border-gray-700 border-2 rounded-full bg-red-800 block" :src="randomRobo()"/>
+    <p class="text-2xl mb-2 text-center">
+        AI : {{this.roboIndex}}
+    </p>
+    <div class="border-red-400 border-solid border-2 ai rounded">
+        <div class="text-center text-white py-3 bg-red-400" 
+            :style="{ width: aiHealth + '%' }">
+            {{ aiHealth }}
+        </div>
+    </div>
   </div>
 </template>
 
@@ -30,6 +39,14 @@ export default {
     return {
       roboIndex: this.randomizer(roboHashnames)
     };
+  },
+  computed:{
+    started(){
+      return this.$store.state.started;
+    },
+    aiHealth(){
+      return this.$store.state.aiHealth;
+    }
   },
   methods: {
     randomRobo: function() {

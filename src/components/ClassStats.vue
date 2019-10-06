@@ -1,7 +1,8 @@
 <template>
 <div>
     <div class="flex flex-wrap justify-center mt-4">
-        <div class="w-96 mx-4 block">
+        <div class="w-96 mt-2 mb-4 mx-4 block">
+            <img class="m-auto h-48 border-gray-700 border-2 rounded-full bg-blue-800 block" src="/assets/humans.png">
             <p class="text-2xl text-center">
                 Human :
             </p>
@@ -13,15 +14,7 @@
             </div>
         </div>
         <div class="w-96 mx-4 block">
-            <p class="text-2xl text-center">
-                AI :
-            </p>
-            <div class="border-red-400 border-solid border-2 rounded">
-                <div class="text-center text-white py-3 bg-red-400" 
-                    :style="{ width: aiHealth + '%' }">
-                    {{ aiHealth }}
-                </div>
-            </div>
+            <RoboHash></RoboHash>
         </div>
     </div>
     <div class="flex flex-wrap justify-center mt-4">
@@ -41,17 +34,19 @@
 </template>
 
 <script>
+    import RoboHash from './RoboHash'
+
     export default {
         computed: {
             playerHealth() {
                 return this.$store.state.playerHealth;
             },
-            aiHealth(){
-                return this.$store.state.aiHealth;
-            },
             playerMana(){
                 return this.$store.state.playerMana;
             }
+        },
+        components: {
+            RoboHash
         }
     }
 </script>
