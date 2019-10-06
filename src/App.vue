@@ -2,7 +2,7 @@
   <div id="app" class="h-full content-center">
     <img class="m-auto h-56 block border-gray-500 border-4 rounded-full" src="/assets/huvai_800.png" alt="Humans vs AI">
 
-    <ClassStats></ClassStats>
+    <Battle v-if="started"></Battle>
 
     <Counters></Counters>
 
@@ -25,7 +25,7 @@
 <script>
   import Actions from './components/Actions'
   import Backpack from './components/Backpack'
-  import ClassStats from './components/ClassStats'
+  import Battle from './components/Battle'
   import Counters from './components/Counters'
   import Footer from './components/Footer'
   import Log from './components/Log'
@@ -41,7 +41,7 @@
     components: {
       Actions,
       Backpack,
-      ClassStats,
+      Battle,
       Counters,
       Footer,
       Log,
