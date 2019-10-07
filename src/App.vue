@@ -1,5 +1,6 @@
 <template>
-  <div id="app" class="h-full content-center">
+  <div id="app" class="h-screen px-20 pt-8">
+
     <img class="m-auto h-56 block border-gray-500 border-4 rounded-full" src="/assets/huvai_800.png" alt="Humans vs AI">
 
     <Battle v-if="started"></Battle>
@@ -15,7 +16,7 @@
 
     <Log></Log>
 
-    <Footer></Footer>
+    <Footer class="mb-8"></Footer>
 
   </div>
 </template>
@@ -34,7 +35,7 @@
     computed:{
       started(){
         return this.$store.state.started;
-      }
+      },
     },
     components: {
       Actions,

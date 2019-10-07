@@ -64,7 +64,7 @@
     export default {
         data() {
             return {
-                roboIndex: this.randomizer(roboHashnames)
+                roboIndex: this.randomizer(roboHashnames),
             };
         },
         computed: {

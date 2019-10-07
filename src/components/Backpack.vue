@@ -4,7 +4,7 @@
         <p class="text-2xl text-center text-yellow-400 mb-3">Backpack :</p>
         <div class="flex flex-wrap justify-center">
 
-            <button class="p-4 m-2 w-40 rounded text-white bg-blue-500" 
+            <button class="p-4 m-2 w-40 rounded text-white bg-blue-500 focus:outline-none" 
                 v-if="manaPotion > 0" 
                 @click="useManaPotion()"> 
                 <svg class="w-6 h-6 m-auto block" aria-hidden="true" data-prefix="fas" data-icon="mug-hot" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -13,7 +13,7 @@
                 ( {{ manaPotion }} )
             </button>
             
-            <button class="p-4 m-2 w-40 rounded text-white bg-green-500"  
+            <button class="p-4 m-2 w-40 rounded text-white bg-green-500 focus:outline-none"  
                 v-if="potionCount > 0" 
                 @click="usePotion()">
                 <svg class="w-6 h-6 m-auto block" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="medkit"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -59,6 +59,7 @@
                     if (this.$store.state.playerHealth <= 90) {
                         this.$store.state.potionCount -= 1;
                         this.$store.state.playerHealth += 10;
+                        this.$store.state.currentTurn += 1;
                         this.aiAttacks();
                         this.$store.state.turns.unshift({
                             isPlayer: true,
@@ -74,12 +75,13 @@
             useManaPotion() {
                 if (this.$store.state.manaPotion > 0) {
                     if (this.$store.state.playerMana <= 90) {
-                    this.$store.state.manaPotion -= 1;
-                    this.$store.state.playerMana += 30;
-                    this.aiAttacks();
-                    this.$store.state.turns.unshift({
-                        isPlayer: true,
-                        text: "Turn " + this.$store.state.currentTurn + ": You used a mana potion."
+                        this.$store.state.manaPotion -= 1;
+                        this.$store.state.playerMana += 30;
+                        this.$store.state.currentTurn += 1;
+                        this.aiAttacks();
+                        this.$store.state.turns.unshift({
+                            isPlayer: true,
+                            text: "Turn " + this.$store.state.currentTurn + ": You used a mana potion."
                     });
                     } else {
                     alert("You have too much mana to use a mana potion.");

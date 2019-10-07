@@ -6,6 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     started: false,
+    modalOpen: false,
+    modalText: 'Modal Text',
     currentTurn: 0,
     playerHealth: 100,
     aiHealth: 100,

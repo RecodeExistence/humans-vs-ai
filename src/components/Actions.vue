@@ -1,42 +1,58 @@
 <template>
+    <div>
+        <template v-if="modalOpen">
+            <div class="fixed bg-black opacity-75 right-0 left-0 top-0 bottom-0 z-10"></div>
+            <div class="absolute inset-0 flex justify-center items-center  z-20">
+                <div class="fixed bg-blue-900 border-white text-white rounded-lg w-5/6 py-8 h-48 shadow">
+                    <p class="text-center">{{ modalText }}</p>
+                    <div class="flex block mt-8 items-center justify-center">
+                        <button class="p-4 m-2 w-40 rounded text-white bg-red-500 focus:outline-none"
+                        @click="closeModal">Go back to base</button>
+                    </div>
+                </div>
+            </div>
+        </template>
+    
+        <div v-if="!started">
+            <button class="p-4 m-2 bg-red-600 text-white rounded" @click="startGame()">Start Battle</button>
+        </div>
 
-    <div v-if="!started">
-        <button class="p-4 m-2 bg-red-600 text-white rounded" @click="startGame()">Start Battle</button>
-    </div>
+        <div v-else class="m-2 p-4 w-full max-w-lg justify-center border-yellow-400 border-solid border-2">
+            <p class="text-2xl text-center text-yellow-400 mb-3">
+                Abilities : 
+            </p>
 
-    <div v-else class="m-2 p-4 w-full max-w-lg justify-center border-yellow-400 border-solid border-2">
-        <p class="text-2xl text-center text-yellow-400 mb-3">
-            Abilities : 
-        </p>
+            <div class="flex flex-wrap justify-center">
+                <button class="p-4 m-2 w-40 rounded text-white bg-red-500 focus:outline-none" 
+                    @click="attack()">
+                    Attack
+                </button>
 
-        <div class="flex flex-wrap justify-center">
-            <button class="p-4 m-2 w-40 rounded text-white bg-red-500" 
-                @click="attack()">
-                Attack
-            </button>
+                <button class="p-4 m-2 w-40 rounded text-white bg-orange-500 focus:outline-none" 
+                    @click="specialAttack()">
+                    Special Attack
+                </button>
 
-            <button class="p-4 m-2 w-40 rounded text-white bg-orange-500" 
-                @click="specialAttack()">
-                Special Attack
-            </button>
+                <button class="p-4 m-2 w-40 rounded text-white bg-blue-500 focus:outline-none"        
+                    @click="heal()">
+                    Heal
+                </button>
 
-            <button class="p-4 m-2 w-40 rounded text-white bg-blue-500"        
-                @click="heal()">
-                Heal
-            </button>
+                <button class="p-4 m-2 w-40 rounded text-black bg-gray-500 focus:outline-none" 
+                    @click="giveUp()">
+                    Run Away
+                </button>
 
-            <button class="p-4 m-2 w-40 rounded text-black bg-gray-500" 
-                @click="giveUp()">
-                Run Away
-            </button>
-
+            </div>
         </div>
     </div>
-
 </template>
 
 <script>
     export default {
+        data: {
+            modalText: '',
+        },
         computed:{
             started() { return this.$store.state.started; },
             currentTurn() { return this.$store.state.currentTurn; },
@@ -46,6 +62,7 @@
             potionCount() { return this.$store.state.potionCount; },
             manaPotion() { return this.$store.state.manaPotion; },
             turns() { return this.$store.state.turns; },
+            modalOpen() {return this.$store.state.modalOpen},
         },
         methods:{
             startGame() {
@@ -54,8 +71,12 @@
                 this.$store.state.playerMana = 100;
                 this.$store.state.started = true;
                 this.$store.state.turns = [];
+                this.modalText = '';
                 this.$store.state.currentTurn = 0;
                 this.$store.state.totalDamage = 0;
+            },
+            closeModal(){
+                this.$store.state.modalOpen = !this.$store.state.modalOpen;
             },
             doDamage(min, max) {
                 return Math.max(Math.floor(Math.random() * max), min);
@@ -173,26 +194,20 @@
             },
             checkWin() {
                 if (this.$store.state.aiHealth <= 0) {
-                    if (confirm("You Won! New Game?")) {
-                        this.rewardGold();
-                        this.startGame();
-                    } else {
-                        this.rewardGold();
-                        this.$store.state.started = false;
-                    }
-                    return true;
+                    this.modalText = 'You Won!';
+                    this.setWin();
                 } else if (this.$store.state.playerHealth <= 0) {
+                    this.modalText = 'You Lost...';
+                    this.setWin();
                     this.deathPenality();
-                    if (confirm("You lost. New Game?")) {
-                        this.rewardGold();
-                        this.startGame();
-                    } else {
-                        this.rewardGold();
-                        this.$store.state.started = false;
-                    }
-                    return true;
                 }
                 return false;
+            },
+            setWin() {
+                this.$store.state.modalOpen = true;
+                this.$store.state.started = false;
+                this.rewardGold()
+                return true;
             }
         }
     }
