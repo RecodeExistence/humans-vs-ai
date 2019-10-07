@@ -17,7 +17,7 @@
             <button class="p-4 m-2 bg-red-600 text-white rounded" @click="startGame()">Start Battle</button>
         </div>
 
-        <div v-else class="m-2 p-4 w-full max-w-lg justify-center border-yellow-400 border-solid border-2">
+        <div v-else class="m-2 p-4 w-full max-w-lg justify-center border-yellow-400 border-solid border-2 rounded">
             <p class="text-2xl text-center text-yellow-400 mb-3">
                 Abilities : 
             </p>
