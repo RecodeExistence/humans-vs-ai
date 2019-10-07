@@ -6,9 +6,7 @@
 
     <Counters></Counters>
 
-    <div v-show="!started" >
-      <Store></Store>
-    </div>
+    <Store v-show="!started"></Store>
 
     <div class="flex flex-wrap justify-center mt-12">
       <Actions></Actions>

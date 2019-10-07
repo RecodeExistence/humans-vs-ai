@@ -1,9 +1,9 @@
 <template>
 <div>
     <div class="flex flex-wrap justify-center mt-4">
-        <div class="w-96 mt-2 mb-4 mx-4 block">
-            <img class="m-auto h-48 border-gray-700 border-2 rounded-full bg-blue-800 block" src="/assets/humans.png">
-            <p class="text-2xl text-center">
+        <div class="w-1/3 mt-2 max-w-sm mb-4 mx-4 block">
+            <img class="m-auto w-1/2 max-w-xl border-gray-700 border-2 rounded-full bg-blue-800 block" src="/assets/humans.png">
+            <p class="text-2xl mb-2 text-center">
                 Human :
             </p>
             <div class="w-full border-blue-400 border-solid border-2 rounded">
@@ -13,12 +13,12 @@
                 </div>
             </div>
         </div>
-        <div class="w-96 mx-4 block">
-            <img class="m-auto h-48 border-gray-700 border-2 rounded-full bg-red-800 block" :src="randomRobo()"/>
+        <div class="w-1/3 max-w-sm mt-2 mb-4 mx-4 block">
+            <img class="m-auto w-1/2  border-gray-700 border-2 rounded-full bg-red-800 block" :src="randomRobo()"/>
             <p class="text-2xl mb-2 text-center">
                 AI : {{this.roboIndex}}
             </p>
-            <div class="border-red-400 border-solid border-2 ai rounded">
+            <div class="border-red-400 border-solid border-2 w-full rounded">
                 <div class="text-center text-white py-3 bg-red-400" 
                     :style="{ width: aiHealth + '%' }">
                     {{ aiHealth }}
@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="flex flex-wrap justify-center mt-4">
-        <div class="w-96 justify-center mx-4 block">
+        <div class="w-1/3 mt-2 mb-4 mx-4 block">
             <p class="text-2xl mb-1 text-center">
                 Energy :
             </p>
