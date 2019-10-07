@@ -50,8 +50,10 @@
 
 <script>
     export default {
-        data: {
-            modalText: '',
+        data() {
+            return {
+                modalText: '',
+            }
         },
         computed:{
             started() { return this.$store.state.started; },
