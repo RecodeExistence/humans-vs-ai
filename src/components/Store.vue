@@ -1,5 +1,5 @@
 <template>
-  <div class="border-yellow-400 mt-8 p-3 border-solid border-2"> 
+  <div class="border-yellow-400 mt-8 p-3 border-solid border-2 rounded"> 
     <p class="text-2xl text-center text-yellow-400 mb-3">Store</p>
     <div class="flex flex-wrap justify-center items-center">
 

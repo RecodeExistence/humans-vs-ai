@@ -1,14 +1,13 @@
 <template>
-  <div id="app" class="h-full content-center">
-    <img class="m-auto block border-gray-500 border-4 rounded-full" src="/assets/huvai_800.png" alt="Humans vs AI">
+  <div id="app" class="h-screen px-20 pt-8">
 
-    <ClassStats></ClassStats>
+    <img class="m-auto h-56 block border-gray-500 border-4 rounded-full" src="/assets/huvai_800.png" alt="Humans vs AI">
+
+    <Battle v-if="started"></Battle>
 
     <Counters></Counters>
 
-    <div v-show="!started" >
-      <Store></Store>
-    </div>
+    <Store v-show="!started"></Store>
 
     <div class="flex flex-wrap justify-center mt-12">
       <Actions></Actions>
@@ -17,7 +16,7 @@
 
     <Log></Log>
 
-    <Footer></Footer>
+    <Footer class="mb-8"></Footer>
 
   </div>
 </template>
@@ -25,7 +24,7 @@
 <script>
   import Actions from './components/Actions'
   import Backpack from './components/Backpack'
-  import ClassStats from './components/ClassStats'
+  import Battle from './components/Battle'
   import Counters from './components/Counters'
   import Footer from './components/Footer'
   import Log from './components/Log'
@@ -36,12 +35,12 @@
     computed:{
       started(){
         return this.$store.state.started;
-      }
+      },
     },
     components: {
       Actions,
       Backpack,
-      ClassStats,
+      Battle,
       Counters,
       Footer,
       Log,
