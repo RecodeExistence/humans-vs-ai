@@ -73,6 +73,7 @@
                 this.$store.state.playerMana = 100;
                 this.$store.state.started = true;
                 this.$store.state.turns = [];
+                this.$store.state.critChance = 15;
                 this.modalText = '';
                 this.$store.state.currentTurn = 0;
                 this.$store.state.totalDamage = 0;
@@ -84,7 +85,8 @@
                 return Math.max(Math.floor(Math.random() * max), min);
             },
             aiAttacks() {
-                var damage = this.doDamage(0, 7);
+                var crit = Math.floor(Math.random() * 100) < 10; // AI crit chance 10 out of 100
+                var damage = crit ? this.doDamage(7, 14) : this.doDamage(0, 7);
                 this.$store.state.playerHealth -= damage;
                 if (damage > 0) {
                     this.$store.state.turns.unshift({
@@ -95,7 +97,8 @@
                         ": AI " +
                         this.attackName() +
                         " you for " +
-                        damage
+                        damage +
+                        (crit ? " critical hit." : " normal hit.")
                     });
                 } else {
                     this.$store.state.turns.unshift({
@@ -106,16 +109,17 @@
                 this.checkWin();
             },
             attack() {
+                var crit = Math.floor(Math.random() * 100) < this.$store.state.critChance;
                 this.$store.state.currentTurn += 1;
                 this.$store.state.usedSpecial = false;
                 this.$store.state.usedHeal = false;
-                var damage = this.doDamage(0, 5);
+                var damage = crit ? this.doDamage(5, 10) : this.doDamage(0, 5);
                 this.$store.state.aiHealth -= damage;
                 this.$store.state.totalDamage += damage;
                 if (damage > 0) {
                     this.$store.state.turns.unshift({
                     isPlayer: true,
-                    text: "Turn " + this.$store.state.currentTurn + ": You hit the AI for " + damage
+                    text: "Turn " + this.$store.state.currentTurn + ": You hit the AI for " + damage + (crit ? " critical hit." : " normal hit.")
                     });
                 } else {
                     this.$store.state.turns.unshift({
@@ -135,15 +139,17 @@
             },
             specialAttack() {
                 if (this.$store.state.playerMana >= 20) {
+                    var crit = Math.floor(Math.random() * 100) < this.$store.state.critChance;
                     this.$store.state.currentTurn += 1;
                     this.$store.state.playerMana -= 20;
-                    var damage = this.doDamage(5, 10);
+                    var damage = crit ? this.doDamage(10, 20) : this.doDamage(5, 10);
                     this.$store.state.aiHealth -= damage;
                     this.$store.state.totalDamage += damage;
                     this.$store.state.turns.unshift({
                         isPlayer: true,
                         text: "Turn " + this.$store.state.currentTurn +
-                            ": You hit the AI with your special attack for " + damage
+                            ": You hit the AI with your special attack for " + damage +
+                            (crit ? " critical hit" : " normal hit")
                     });
                     this.aiAttacks();
                 } else {
