@@ -1,5 +1,6 @@
 const express = require('express');
-const connectDB = require("../config/db");
+const connectDB = require("./config/db");
+const path = require('path');
 
 const app = express();
 //connect database
@@ -8,10 +9,12 @@ connectDB();
 //initialize middleware
 app.use(express.json({ extended: false }));
 //define routes
-app.use("/users", require("./routes/users"));
-app.use("/auth", require("./routes/auth"));
+app.get('/', (req, res) => { 
+    res.sendFile(path.join(__dirname,'dist','index.html'));
+});
+app.use("/users", require("./Server/routes/users"));
+app.use("/auth", require("./Server/routes/auth"));
 
-app.get("/", (req, res) => res.send("API Running"));
 
 const PORT = process.env.PORT || 3000;
 
