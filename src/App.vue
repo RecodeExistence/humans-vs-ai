@@ -17,7 +17,6 @@
     <Log></Log>
 
     <Footer class="mb-8"></Footer>
-
   </div>
 </template>
 
@@ -28,6 +27,7 @@
   import Counters from './components/Counters'
   import Footer from './components/Footer'
   import Log from './components/Log'
+  import Register from './components/Register'
   import Store from './components/Store.vue'
 
   export default {
@@ -44,6 +44,7 @@
       Counters,
       Footer,
       Log,
+      Register,
       Store,
     },
   }
