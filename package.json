@@ -6,8 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "nodemon server",
-    "start": "node server"
+    "dev": "nodemon server/server",
+    "start": "node server/server"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -15,6 +15,7 @@
     "config": "^3.2.3",
     "core-js": "^2.6.5",
     "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-validator": "^6.2.0",
     "jsonwebtoken": "^8.5.1",
