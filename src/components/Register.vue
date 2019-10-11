@@ -29,6 +29,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -45,15 +46,20 @@ export default {
     }
   },
   methods: {
+
     async register(e) {
       e.preventDefault();
       try {
         const response = await axios.post("/api/users", this.userData);
+        closeLogin();
         alert("Registered");
       } catch (err) {
         alert("Not Registered");
       }
     },
-  }
+  },
+  closeLogin(){
+    return this.loginModal = false;
+  },
 };
 </script>
