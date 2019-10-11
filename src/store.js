@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     started: false,
     modalOpen: false,
+    loginModal: false,
     modalText: 'Modal Text',
     currentTurn: 0,
     playerHealth: 100,

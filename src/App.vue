@@ -1,6 +1,9 @@
 <template>
   <div id="app" class="h-screen px-20 pt-8">
 
+    <button @click="openLogin()">Register</button>
+    <Register></Register>
+
     <img class="m-auto h-56 block border-gray-500 border-4 rounded-full" src="/assets/huvai_800.png" alt="Humans vs AI">
 
     <Battle v-if="started"></Battle>
@@ -15,8 +18,6 @@
     </div>
 
     <Log></Log>
-
-    <Register></Register>
 
     <Footer class="mb-8"></Footer>
   </div>
@@ -38,6 +39,14 @@
       started(){
         return this.$store.state.started;
       },
+      loginModal() {
+        return this.$store.state.loginModal;
+      }
+    },
+    methods:{
+      openLogin() {
+        this.$store.state.loginModal = true;
+      }
     },
     components: {
       Actions,
