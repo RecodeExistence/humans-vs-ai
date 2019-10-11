@@ -7,8 +7,8 @@ const router = express.Router();
 
 const cors = require('cors');
 
-const auth = require("../middleware/auth");
-const User = require("../models/Users");
+const auth = require("../../middleware/auth");
+const User = require("../../models/Users");
 
 router.get("/", auth, async (req, res) => {
     try {

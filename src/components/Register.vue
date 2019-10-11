@@ -29,7 +29,7 @@ export default {
     async register(e) {
       e.preventDefault();
       try {
-        const response = await axios.post("/users", this.userData);
+        const response = await axios.post("/api/users", this.userData);
         alert("Registered");
       } catch (err) {
         alert("Not Registered");

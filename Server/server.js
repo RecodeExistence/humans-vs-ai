@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //define routes
-app.use("/api/users", require("./routes/users"));
-app.use("/api/auth", require("./routes/auth"));
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
 
 app.use('/api/items', require('./routes/api/items'));
 
@@ -25,7 +25,8 @@ app.use(express.static(__dirname + '/public'))
 app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
 
 const PORT = process.env.PORT || 3000;
+const HOSTNAME = process.env.HOSTNAME || 'localhost';
 
-app.listen(PORT, () => {
-    console.log(`Sever started on port ${PORT}`);
+app.listen(PORT, HOSTNAME,() => {
+    console.log(`Magic is happening at http://${HOSTNAME}:${PORT}`);
 });
