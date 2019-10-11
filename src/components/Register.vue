@@ -2,11 +2,11 @@
   <div>
     <h2>Register</h2>
     <form>
-      <input type="text" v-model="userData.name" />
+      <input class="mb-2 rounded" type="text" v-model="userData.name" placeholder="John / Jane Smith"/>
       <br />
-      <input type="email" v-model="userData.email" />
+      <input class="mb-2 rounded" type="email" v-model="userData.email" placeholder="email@email.com"/>
       <br />
-      <input type="password" v-model="userData.password" />
+      <input class="mb-2 rounded" type="password" v-model="userData.password" placeholder="password"/>
       <br />
       <input type="submit" value="Register" @click="register" />
     </form>
@@ -29,10 +29,10 @@ export default {
     async register(e) {
       e.preventDefault();
       try {
-        const repsonse = await axios.post("/users", this.userData);
-        console.log("Registered");
+        const response = await axios.post("/users", this.userData);
+        alert("Registered");
       } catch (err) {
-        console.log("Not Registered");
+        alert("Not Registered");
       }
     }
   }
