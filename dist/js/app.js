@@ -10,7 +10,9 @@ new Vue({
     potionCount: 0,
     manaPotion: 0,
     totalDamage: 0,
-    turns: []
+    turns: [],
+    aiWins: 0,
+    playerWins: 0
   },
   methods: {
     startGame: function () {
