@@ -112,8 +112,8 @@ export default {
       var crit = Math.floor(Math.random() * 100) < 10; // AI crit chance 10 out of 100
       var damage = crit ? this.doDamage(7, 14) : this.doDamage(0, 7);
       this.$store.state.playerHealth -= damage;
+      this.$store.state.playerDamage = damage;
       if (damage > 0) {
-        this.$store.playerDamage = damage;
         this.$store.state.turns.unshift({
           isPlayer: false,
           text:
@@ -176,6 +176,7 @@ export default {
         var damage = crit ? this.doDamage(10, 20) : this.doDamage(5, 10);
         this.$store.state.aiHealth -= damage;
         this.$store.state.totalDamage += damage;
+        this.$store.state.playerDamage = damage;
         this.$store.state.turns.unshift({
           isPlayer: true,
           text:
