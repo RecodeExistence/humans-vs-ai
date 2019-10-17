@@ -7,7 +7,7 @@
           src="/assets/humans.png"
           :style="{ backgroundImage: `linear-gradient(#333, #111), radial-gradient(circle at bottom, #f56565 ${playerHealth}%, transparent  ${playerHealth}% `}"
         />
-        <p class="text-2xl mb-2 text-center">Human :</p>
+        <p class="text-2xl mb-2 text-center">Humans :</p>
         <div class="w-full border-blue-400 border-solid border-2 rounded">
           <div
             class="text-center text-white py-3 bg-blue-400"
