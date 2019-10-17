@@ -5,7 +5,7 @@
         <img
           class="human-img m-auto w-1/2 max-w-xl border-2 rounded-full block"
           src="/assets/humans.png"
-          :style="{ backgroundImage: 'linear-gradient(#4e6baa, #2c5282), radial-gradient(circle at bottom, #f00 ' + playerHealth + '%, transparent ' + (playerHealth) + '%' }"
+          :style="{ backgroundImage: `linear-gradient(#333, #111), radial-gradient(circle at bottom, #f56565 ${playerHealth}%, transparent  ${playerHealth}% `}"
         />
         <p class="text-2xl mb-2 text-center">Human :</p>
         <div class="w-full border-blue-400 border-solid border-2 rounded">
@@ -19,7 +19,7 @@
         <img
           class="robot-img m-auto w-1/2 border-2 rounded-full block"
           :src="randomRobo()"
-          :style="{ backgroundImage: 'linear-gradient(#333, #111), radial-gradient(circle at bottom, #f00 ' + aiHealth + '%, transparent ' + (aiHealth) + '%' }"
+          :style="{ backgroundImage: `linear-gradient(#333, #111), radial-gradient(circle at bottom, #f56565 ${aiHealth}%, transparent  ${aiHealth}% `}"
         />
         <p class="text-2xl mb-2 text-center">AI : {{this.roboIndex}}</p>
         <div class="border-red-400 border-solid border-2 w-full rounded">
