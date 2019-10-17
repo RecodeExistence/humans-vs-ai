@@ -4,6 +4,8 @@
       <div class="fixed bg-black opacity-75 right-0 left-0 top-0 bottom-0 z-10"></div>
       <div class="absolute inset-0 flex justify-center items-center z-20">
         <div class="fixed bg-blue-900 border-white rounded-lg w-5/6 py-8 shadow">
+
+          <!-- Start of Content -->
           <p class="text-center text-2xl">Register</p>
           <div class="flex block mt-8 items-center justify-center">
             <form>
@@ -21,6 +23,8 @@
               </div>
             </form>
           </div>
+          <!-- End of Content -->
+          
         </div>
       </div>
     </template>
@@ -46,7 +50,6 @@ export default {
     }
   },
   methods: {
-
     async register(e) {
       e.preventDefault();
       try {

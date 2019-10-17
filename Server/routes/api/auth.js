@@ -19,7 +19,8 @@ router.get("/", auth, async (req, res) => {
         res.status(500).send("Server Error!");
     }
 });
-//get users
+
+//get Users
 router.options("/users", cors())
 router.get("/users", cors(), async (req, res, next) => {
     try {

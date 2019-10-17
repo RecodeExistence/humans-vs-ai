@@ -1,7 +1,11 @@
 const express = require('express');
 const mongodb = require('mongodb');
+const { check, validationResult } = require("express-validator/check");
+
+const User = require('../../models/Users');
 
 const router = express.Router();
+const auth = require('../../middleware/auth');
 
 // Get items
 router.get('/', async (req, res) => {
@@ -10,7 +14,21 @@ router.get('/', async (req, res) => {
 });
 
 // Add item
-router.post('/', async (req, res) => {
+router.post('/', auth, [
+    check('name', 'Item name is required')
+        .not()
+        .isEmpty()
+        .,
+    check('price', "Please include a price")
+        .not()
+        .isEmpty()
+    ], 
+    
+    async (req, res) => {
+        if(!errors.isEmpty()){
+            return res.status(400).json({ errors: errors.array() });
+        }
+
     const item = await loadItemCollection();
     await item.insertOne({
         text : req.body.text,
@@ -19,13 +37,4 @@ router.post('/', async (req, res) => {
     res.status(201).send();
 });
 
-async function loadItemCollection() {
-    const client = await mongodb.MongoClient.connect(
-        process.env.mongoURI,{ 
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        }
-    )
-    return client.db('test').collection('items');
-}
 module.exports = router;
