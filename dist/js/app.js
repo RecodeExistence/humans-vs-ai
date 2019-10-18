@@ -10,7 +10,9 @@ new Vue({
     potionCount: 0,
     manaPotion: 0,
     totalDamage: 0,
-    turns: []
+    turns: [],
+    aiWins: 0,
+    playerWins: 0
   },
   methods: {
     startGame: function () {
@@ -21,6 +23,8 @@ new Vue({
       this.turns = [];
       this.currentTurn = 0;
       this.totalDamage = 0;
+      this.playerWins = 0 ; 
+      this.aiWins = 0;
     },
     showBackPack: function() {
       if(this.potionCount || this.manaPotion > 0) {
@@ -165,7 +169,7 @@ new Vue({
     rewardGold: function () {
       this.gold += this.totalDamage;
     },
-    deathPenality: function () {
+    deathPenalty: function () {
       let percent = 0.25 * this.gold;
 
       this.gold -= Math.floor(percent);
@@ -201,7 +205,7 @@ new Vue({
     rewardGold: function () {
       this.gold += this.totalDamage;
     },
-    deathPenality: function () {
+    deathPenalty: function () {
       let percent = 0.25 * this.gold;
 
       this.gold -= Math.floor(percent);
@@ -213,7 +217,7 @@ new Vue({
     giveUp: function () {
       if (confirm("You Give UP. New Game?")) {
         this.started = false;
-        this.deathPenality();
+        this.deathPenalty();
         this.totalDamage = 0;
       } else {
         this.started = true;
@@ -223,6 +227,7 @@ new Vue({
     checkWin: function () {
       if (this.aiHealth <= 0) {
         if (confirm("You Won! New Game?")) {
+          this.updateWinCount();
           this.rewardGold();
           this.startGame();
         } else {
@@ -231,7 +236,7 @@ new Vue({
         }
         return true;
       } else if (this.playerHealth <= 0) {
-        this.deathPenality();
+        this.deathPenalty();
         if (confirm("You lost. New Game?")) {
           this.rewardGold();
           this.startGame();
@@ -242,6 +247,16 @@ new Vue({
         return true;
       }
       return false;
+    }, 
+
+    updateWinCount() {
+      if(this.aiHealth <= 0) {
+      this.playerWins += 1 ; 
+      } else {
+        this.aiWins += 1 ; 
+      }
+
+      }
     }
-  }
+
 });
