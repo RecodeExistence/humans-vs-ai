@@ -87,6 +87,9 @@ export default {
     },
     playerDamage() {
       return this.$store.state.playerDamage;
+    },
+    totalAiDamage() {
+      return this.$store.state.totalAiDamage;
     }
   },
   methods: {
@@ -113,6 +116,7 @@ export default {
       var damage = crit ? this.doDamage(7, 14) : this.doDamage(0, 7);
       this.$store.state.playerHealth -= damage;
       this.$store.state.playerDamage = damage;
+      this.$store.state.totalAiDamage += damage;
       if (damage > 0) {
         this.$store.state.turns.unshift({
           isPlayer: false,
@@ -141,6 +145,7 @@ export default {
       var damage = crit ? this.doDamage(5, 10) : this.doDamage(0, 5);
       this.$store.state.aiHealth -= damage;
       this.$store.state.aiDamage = damage;
+      this.$store.state.totalAiDamage += damage;
       if (damage > 0) {
         this.$store.state.turns.unshift({
           isPlayer: true,
@@ -177,6 +182,7 @@ export default {
         this.$store.state.aiHealth -= damage;
         this.$store.state.aiDamage = damage;
         this.$store.state.playerDamage = damage;
+        this.$store.state.totalAiDamage += damage;
         this.$store.state.turns.unshift({
           isPlayer: true,
           text:
@@ -228,13 +234,13 @@ export default {
       if (confirm("You Give UP. New Game?")) {
         this.$store.state.started = false;
         this.deathPenality();
-        this.$store.state.aiDamage = 0;
+        this.$store.state.totalAiDamage = 0;
       } else {
         this.$store.state.started = true;
       }
     },
     rewardGold() {
-      this.$store.state.gold += this.$store.state.aiDamage * 2.5;
+      this.$store.state.gold += this.$store.state.totalAiDamage * 2.5;
     },
     deathPenality() {
       let percent = 0.25 * this.$store.state.gold;
