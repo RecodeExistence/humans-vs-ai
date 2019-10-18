@@ -5,7 +5,7 @@
         <img
           class="human-img m-auto w-1/2 max-w-xl border-2 rounded-full block"
           src="/assets/humans.png"
-          :style="{ backgroundImage: 'linear-gradient(#4e6baa, #2c5282), radial-gradient(circle at bottom, #f00 ' + playerHealth + '%, transparent ' + (playerDamage) + '%' }"
+          :style="{ backgroundImage: 'radial-gradient(circle at bottom, rgba(255, 0, 0, 0.473) ' + playerHealth + '%, transparent ' + playerDamage  + '%)' }"
         />
         <p class="text-2xl mb-2 text-center">Human :</p>
         <div class="w-full border-blue-400 border-solid border-2 rounded">
@@ -19,7 +19,7 @@
         <img
           class="robot-img m-auto w-1/2 border-2 rounded-full block"
           :src="randomRobo()"
-          :style="{ backgroundImage: 'linear-gradient(#333, #111), radial-gradient(circle at bottom, #f00 ' + aiHealth + '%, transparent ' + (totalDamage) + '%' }"
+          :style="{ backgroundImage: 'radial-gradient(circle at bottom, rgba(255, 0, 0, 0.473) ' + aiHealth + '%, transparent ' + aiDamage  + '%)' }"
         />
         <p class="text-2xl mb-2 text-center">AI : {{this.roboIndex}}</p>
         <div class="border-red-400 border-solid border-2 w-full rounded">
@@ -45,17 +45,17 @@
 </template>
 <style scoped>
 .human-img {
-  border: double 3px transparent;
+  border: double 3px gray;
   border-radius: 100%;
+  padding: 1px;
   background-origin: border-box;
-  background-clip: content-box, border-box;
 }
 
 .robot-img {
-  border: double 3px transparent;
+  border: double 3px gray;
+  padding: 1px;
   border-radius: 100%;
   background-origin: border-box;
-  background-clip: content-box, border-box;
 }
 </style>
 
@@ -100,8 +100,8 @@ export default {
     playerDamage() {
       return this.$store.state.playerDamage;
     },
-    totalDamage() {
-      return this.$store.state.totalDamage;
+    aiDamage() {
+      return this.$store.state.aiDamage;
     }
   },
   methods: {

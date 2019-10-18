@@ -99,7 +99,7 @@ export default {
       this.$store.state.critChance = 15;
       this.modalText = "";
       this.$store.state.currentTurn = 0;
-      this.$store.state.totalDamage = 0;
+      this.$store.state.aiDamage = 0;
       this.$store.state.playerDamage = 0;
     },
     closeModal() {
@@ -140,7 +140,7 @@ export default {
       this.$store.state.usedHeal = false;
       var damage = crit ? this.doDamage(5, 10) : this.doDamage(0, 5);
       this.$store.state.aiHealth -= damage;
-      this.$store.state.totalDamage += damage;
+      this.$store.state.aiDamage = damage;
       if (damage > 0) {
         this.$store.state.turns.unshift({
           isPlayer: true,
@@ -175,7 +175,7 @@ export default {
         this.$store.state.playerMana -= 20;
         var damage = crit ? this.doDamage(10, 20) : this.doDamage(5, 10);
         this.$store.state.aiHealth -= damage;
-        this.$store.state.totalDamage += damage;
+        this.$store.state.aiDamage = damage;
         this.$store.state.playerDamage = damage;
         this.$store.state.turns.unshift({
           isPlayer: true,
@@ -228,13 +228,13 @@ export default {
       if (confirm("You Give UP. New Game?")) {
         this.$store.state.started = false;
         this.deathPenality();
-        this.$store.state.totalDamage = 0;
+        this.$store.state.aiDamage = 0;
       } else {
         this.$store.state.started = true;
       }
     },
     rewardGold() {
-      this.$store.state.gold += this.$store.state.totalDamage * 2.5;
+      this.$store.state.gold += this.$store.state.aiDamage * 2.5;
     },
     deathPenality() {
       let percent = 0.25 * this.$store.state.gold;
