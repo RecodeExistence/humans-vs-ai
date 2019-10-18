@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev": "nodemon Server/server.js",
-    "start": "node Sserver/server.js"
+    "start": "node Server/server.js"
   },
   "dependencies": {
     "axios": "^0.19.0",
