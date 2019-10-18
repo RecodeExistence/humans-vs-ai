@@ -5,6 +5,7 @@
         <img
           class="human-img m-auto w-1/2 max-w-xl border-2 rounded-full block"
           src="/assets/humans.png"
+
           :style="{ backgroundImage: `linear-gradient(#333, #111), radial-gradient(circle at bottom, #f56565 ${playerHealth}%, transparent  ${playerHealth}% `}"
         />
         <p class="text-2xl mb-2 text-center">Humans :</p>
@@ -19,6 +20,7 @@
         <img
           class="robot-img m-auto w-1/2 border-2 rounded-full block"
           :src="randomRobo()"
+
           :style="{ backgroundImage: `linear-gradient(#333, #111), radial-gradient(circle at bottom, #f56565 ${aiHealth}%, transparent  ${aiHealth}% `}"
         />
         <p class="text-2xl mb-2 text-center">AI : {{this.roboIndex}}</p>
@@ -45,17 +47,17 @@
 </template>
 <style scoped>
 .human-img {
-  border: double 3px transparent;
+  border: double 3px gray;
   border-radius: 100%;
+  padding: 1px;
   background-origin: border-box;
-  background-clip: content-box, border-box;
 }
 
 .robot-img {
-  border: double 3px transparent;
+  border: double 3px gray;
+  padding: 1px;
   border-radius: 100%;
   background-origin: border-box;
-  background-clip: content-box, border-box;
 }
 </style>
 
@@ -100,8 +102,8 @@ export default {
     playerDamage() {
       return this.$store.state.playerDamage;
     },
-    totalDamage() {
-      return this.$store.state.totalDamage;
+    aiDamage() {
+      return this.$store.state.aiDamage;
     }
   },
   methods: {

@@ -25,7 +25,7 @@ export default {
       return this.$store.state.gold;
     },
     damage() {
-      return this.$store.state.totalDamage;
+      return this.$store.state.aiDamage;
     },
     currency() {
       return this.$store.state.currency;
