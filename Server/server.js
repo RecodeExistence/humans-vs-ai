@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const connectDB = require("../config/db");
 const cors = require('cors');
 const dotenv = require('dotenv').config();
@@ -21,11 +21,8 @@ app.use('/api/items', require('./routes/api/items'));
 app.use(express.static(__dirname + '/public'))
 app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
 
-// Define Ports
-const PORT = process.env.PORT || 3000;
-const HOSTNAME = process.env.HOSTNAME || 'localhost';
+const PORT = process.env.PORT;
 
-// Listen for Ports and Hostname
-app.listen(PORT, HOSTNAME,() => {
-    console.log(`Magic is happening at http://${HOSTNAME}:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server started`);
 });
