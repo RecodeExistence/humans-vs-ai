@@ -8,7 +8,7 @@ const { check, validationResult } = require("express-validator/check");
 const User = require('../../models/Users');
 
 // Test User API 
-router.get('/', (req, res)=> res.send('User API working...'));
+router.get('/', (req, res) => res.send('User API working...'));
 
 // Register user
 router.post('/',

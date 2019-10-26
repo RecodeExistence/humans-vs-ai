@@ -18,7 +18,7 @@ router.post('/', auth, [
     check('name', 'Item name is required')
         .not()
         .isEmpty()
-        .,
+        .
     check('price', "Please include a price")
         .not()
         .isEmpty()

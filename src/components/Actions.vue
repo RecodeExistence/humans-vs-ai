@@ -58,39 +58,17 @@ export default {
     };
   },
   computed: {
-    started() {
-      return this.$store.state.started;
-    },
-    currentTurn() {
-      return this.$store.state.currentTurn;
-    },
-    playerHealth() {
-      return this.$store.state.playerHealth;
-    },
-    aiHealth() {
-      return this.$store.state.aiHealth;
-    },
-    playerMana() {
-      return this.$store.state.playerMana;
-    },
-    potionCount() {
-      return this.$store.state.potionCount;
-    },
-    manaPotion() {
-      return this.$store.state.manaPotion;
-    },
-    turns() {
-      return this.$store.state.turns;
-    },
-    modalOpen() {
-      return this.$store.state.modalOpen;
-    },
-    playerDamage() {
-      return this.$store.state.playerDamage;
-    },
-    totalAiDamage() {
-      return this.$store.state.totalAiDamage;
-    }
+    started() { return this.$store.state.started; },
+    currentTurn() { return this.$store.state.currentTurn; },
+    playerHealth() { return this.$store.state.playerHealth; },
+    aiHealth() { return this.$store.state.aiHealth; },
+    playerMana() { return this.$store.state.playerMana; },
+    potionCount() { return this.$store.state.potionCount; },
+    manaPotion() { return this.$store.state.manaPotion; },
+    turns() { return this.$store.state.turns; },
+    modalOpen() { return this.$store.state.modalOpen; },
+    playerDamage() { return this.$store.state.playerDamage; },
+    totalAiDamage() { return this.$store.state.totalAiDamage; }
   },
   methods: {
     startGame() {
