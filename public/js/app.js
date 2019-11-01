@@ -2570,6 +2570,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -22679,7 +22683,9 @@ var render = function() {
                                 [_vm._v("Register")]
                               )
                             ]
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm._m(0)
                         ])
                       ]
                     )
@@ -22693,7 +22699,20 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-8 items-center justify-center" }, [
+      _c("p", [
+        _vm._v(
+          "Note: This feature is still in development -- Your data will not be save, and an error will be thrown"
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -36817,8 +36836,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/karl/Desktop/Projects/help/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/karl/Desktop/Projects/help/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/karl/Desktop/Projects/humans-vs-ai/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/karl/Desktop/Projects/humans-vs-ai/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

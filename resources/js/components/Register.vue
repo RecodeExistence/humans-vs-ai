@@ -20,6 +20,10 @@
                 @click="closeLogin">Close</button>
 
                 <button type="submit" @click="register" class="p-4 m-2 w-40 rounded text-white bg-red-500 focus:outline-none">Register</button>
+                
+              </div>
+              <div class="mt-8 items-center justify-center">
+                <p>Note: This feature is still in development -- Your data will not be save, and an error will be thrown</p>
               </div>
             </form>
           </div>
