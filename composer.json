@@ -64,8 +64,8 @@
             "composer install",
             "composer dump-autoload",
             "@php artisan migrate",
-            "@php artisan passport:install --force",
             "@php artisan telescope:clear",
+            "@php artisan passport:install --force",
             "@php artisan db:seed --class=UsersTableSeeder"
         ]
     }
