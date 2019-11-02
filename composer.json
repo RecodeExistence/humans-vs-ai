@@ -59,6 +59,14 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "dev" : [
+            "composer install",
+            "composer dump-autoload",
+            "@php artisan migrate",
+            "@php artisan passport:install --force",
+            "@php artisan telescope:clear",
+            "@php artisan db:seed --class=UsersTableSeeder"
         ]
     }
 }
