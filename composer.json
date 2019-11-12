@@ -70,7 +70,12 @@
             "@php artisan telescope:clear",
             "@php artisan passport:install --force",
             "@php artisan db:seed --class=UsersTableSeeder",
+            "@php artisan db:seed --class=StoreTableSeeder",
             "npm run dev"
+        ],
+        "dev-refresh" : [
+            "@php artisan migrate:fresh",
+            "composer run dev"
         ]
     }
 }
