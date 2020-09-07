@@ -54,21 +54,43 @@
 export default {
   data() {
     return {
-      modalText: ""
+      modalText: "",
     };
   },
   computed: {
-    started() { return this.$store.state.started; },
-    currentTurn() { return this.$store.state.currentTurn; },
-    playerHealth() { return this.$store.state.playerHealth; },
-    aiHealth() { return this.$store.state.aiHealth; },
-    playerMana() { return this.$store.state.playerMana; },
-    potionCount() { return this.$store.state.potionCount; },
-    manaPotion() { return this.$store.state.manaPotion; },
-    turns() { return this.$store.state.turns; },
-    modalOpen() { return this.$store.state.modalOpen; },
-    playerDamage() { return this.$store.state.playerDamage; },
-    totalAiDamage() { return this.$store.state.totalAiDamage; }
+    started() {
+      return this.$store.state.started;
+    },
+    currentTurn() {
+      return this.$store.state.currentTurn;
+    },
+    playerHealth() {
+      return this.$store.state.playerHealth;
+    },
+    aiHealth() {
+      return this.$store.state.aiHealth;
+    },
+    playerMana() {
+      return this.$store.state.playerMana;
+    },
+    potionCount() {
+      return this.$store.state.potionCount;
+    },
+    manaPotion() {
+      return this.$store.state.manaPotion;
+    },
+    turns() {
+      return this.$store.state.turns;
+    },
+    modalOpen() {
+      return this.$store.state.modalOpen;
+    },
+    playerDamage() {
+      return this.$store.state.playerDamage;
+    },
+    totalAiDamage() {
+      return this.$store.state.totalAiDamage;
+    },
   },
   methods: {
     startGame() {
@@ -82,6 +104,7 @@ export default {
       this.$store.state.currentTurn = 0;
       this.$store.state.aiDamage = 0;
       this.$store.state.playerDamage = 0;
+      this.$store.state.usingPotion = false;
     },
     closeModal() {
       this.$store.state.modalOpen = !this.$store.state.modalOpen;
@@ -92,9 +115,18 @@ export default {
     aiAttacks() {
       var crit = Math.floor(Math.random() * 100) < 10; // AI crit chance 10 out of 100
       var damage = crit ? this.doDamage(7, 14) : this.doDamage(0, 7);
-      this.$store.state.playerHealth -= damage;
-      this.$store.state.playerDamage = damage;
-      this.$store.state.totalAiDamage += damage;
+      if (this.$store.state.usingPotion === "false") {
+        console.log("no potion used, normal damage.");
+        this.$store.state.playerHealth -= damage;
+        this.$store.state.playerDamage = damage;
+        this.$store.state.totalAiDamage += damage;
+      } else {
+        console.log(
+          `Using potion no damage. (Store usingPotionVariable: ${$store.state.usingPotion})`
+        );
+        damage = 0;
+      }
+
       if (damage > 0) {
         this.$store.state.turns.unshift({
           isPlayer: false,
@@ -105,12 +137,13 @@ export default {
             this.attackName() +
             " you for " +
             damage +
-            (crit ? " critical hit." : " normal hit.")
+            (crit ? " critical hit." : " normal hit."),
         });
+        this.$store.state.usingPotion = false;
       } else {
         this.$store.state.turns.unshift({
           isPlayer: false,
-          text: "Turn " + this.$store.state.currentTurn + ": AI missed!"
+          text: "Turn " + this.$store.state.currentTurn + ": AI missed!",
         });
       }
       this.checkWin();
@@ -132,12 +165,12 @@ export default {
             this.$store.state.currentTurn +
             ": You hit the AI for " +
             damage +
-            (crit ? " critical hit." : " normal hit.")
+            (crit ? " critical hit." : " normal hit."),
         });
       } else {
         this.$store.state.turns.unshift({
           isPlayer: true,
-          text: "Turn " + this.$store.state.currentTurn + ": You missed!"
+          text: "Turn " + this.$store.state.currentTurn + ": You missed!",
         });
       }
       if (this.checkWin()) {
@@ -168,13 +201,13 @@ export default {
             this.$store.state.currentTurn +
             ": You hit the AI with your special attack for " +
             damage +
-            (crit ? " critical hit" : " normal hit")
+            (crit ? " critical hit" : " normal hit"),
         });
         this.aiAttacks();
       } else {
         this.turns.unshift({
           isPlayer: true,
-          text: "You don't have enough mana for that attack."
+          text: "You don't have enough mana for that attack.",
         });
       }
       if (this.checkWin()) {
@@ -182,6 +215,7 @@ export default {
       }
     },
     heal() {
+      this.$store.state.usingPotion = true;
       if (this.$store.state.playerMana >= 10) {
         this.$store.state.currentTurn += 1;
         this.$store.state.playerMana -= 10;
@@ -198,13 +232,13 @@ export default {
             this.$store.state.currentTurn +
             ": You heal for " +
             heals +
-            "."
+            ".",
         });
         this.aiAttacks();
       } else {
         this.$store.state.turns.unshift({
           isPlayer: true,
-          text: "You dont have enough mana to heal!"
+          text: "You dont have enough mana to heal!",
         });
       }
     },
@@ -240,7 +274,7 @@ export default {
       this.$store.state.started = false;
       this.rewardGold();
       return true;
-    }
-  }
+    },
+  },
 };
 </script>
